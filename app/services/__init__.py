@@ -1,7 +1,17 @@
-"""Business logic services."""
+"""
+Module Name: Business Logic Services
+Description:
+    This module contains service classes that encapsulate the business logic
+    of the application, such as URL shortening and user management.
+    These services interact with the database models and
+    provide a clean interface for the routes to use.
+Author: Juande Molina
+Copyright: (c) 2026 JuandeMolina
+License: MIT
+"""
 
 import random
-import string
+
 from ..models import URL, db
 
 
@@ -11,8 +21,8 @@ class URLService:
     @staticmethod
     def generate_alias(length=6):
         """Generate a unique alias for the URL."""
-        alphabet = string.ascii_uppercase + string.digits
-        while True:
+        alphabet = "BCDEFGHJKLMNPQRSTUVWXYZ"  # Exclude confusing characters
+        while True: # Ensure to make a new non existing alias if accidentaly made an existing one
             alias = ''.join(random.choice(alphabet) for _ in range(length))
             if not URL.query.filter_by(alias=alias).first():
                 return alias

@@ -1,6 +1,17 @@
+"""
+Module Name: Configuration
+Description: 
+    This module defines the configuration classes for the Flask application,
+    including settings for development, production, and testing environments.
+Author: Juande Molina
+Copyright: (c) 2026 JuandeMolina
+License: MIT
+"""
+
 import os
-from dotenv import load_dotenv
 from pathlib import Path
+
+from dotenv import load_dotenv
 
 load_dotenv()
 

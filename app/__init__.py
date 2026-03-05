@@ -1,3 +1,12 @@
+"""
+Module Name: Initialization
+Description: This module initializes the whole application.
+Author: Juande Molina
+Copyright: (c) 2026 JuandeMolina
+License: MIT
+"""
+
+
 # Import from core module
 from .core import create_app as _create_app
 

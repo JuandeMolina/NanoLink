@@ -1,4 +1,15 @@
-from app import create_app
+#!/usr/bin/env python3
+"""
+Application Entry Point
+Description:
+    This module serves as the entry point for the Flask application.
+    It creates the app instance and runs the development server.
+Author: Juande Molina
+Copyright: (c) 2026 JuandeMolina
+License: MIT
+"""
+
+from app.core import create_app
 
 app = create_app()
 

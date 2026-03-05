@@ -1,12 +1,21 @@
-"""Core configuration and extensions for the Flask app."""
+"""
+Module Name: Core Configuration
+Description: This module creates the app and configures extensions for the Flask app.
+Author: Juande Molina
+Copyright: (c) 2026 JuandeMolina
+License: MIT
+"""
 
+import os
 import logging
+from pathlib import Path
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 
-# Initialize extensions
+# Extensions
 db = SQLAlchemy()
 migrate = Migrate()
 login_manager = LoginManager()
@@ -14,12 +23,11 @@ login_manager = LoginManager()
 
 def create_app(config_class=None):
     """Application factory pattern."""
-    import os
-
-    template_dir = os.path.abspath(
-        os.path.join(os.path.dirname(__file__), "..", "templates")
-    )
-    app = Flask(__name__, template_folder=template_dir)
+    BASE_DIR = Path(__file__).resolve().parent.parent.parent
+    app = Flask(
+        __name__,
+        template_folder=str(BASE_DIR / "app" / "templates"),
+    )  # Specify the template folder explicitly to avoid errors
 
     # Load configuration
     if config_class:
@@ -32,11 +40,8 @@ def create_app(config_class=None):
     # Initialize extensions
     db.init_app(app)
     migrate.init_app(app, db)
-
     login_manager.init_app(app)
-    login_manager.login_view = "auth.login"
-
-    # Setup logging
+    login_manager.login_view = "auth.login"  # type: ignore[assignment]
     setup_logging(app)
 
     # Register blueprints
@@ -64,6 +69,6 @@ def setup_logging(app):
     )
     # Add file handler if needed
     if not app.debug:
-        file_handler = logging.FileHandler("app.log")
+        file_handler = logging.FileHandler("logs/app.log")
         file_handler.setLevel(logging.WARNING)
         app.logger.addHandler(file_handler)

@@ -1,7 +1,13 @@
 #!/usr/bin/env python3
-"""Utility script to initialize the database."""
 
-import os
+"""
+Module Name: Database Initialization Script
+Description: This module initializes the database for the application.
+Author: Juande Molina
+Copyright: (c) 2026 JuandeMolina
+License: MIT
+"""
+
 import sys
 from pathlib import Path
 

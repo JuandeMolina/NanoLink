@@ -69,7 +69,7 @@ python acortadorenlaces.py
 flask run
 ```
 
-La aplicación estará disponible en `http://127.0.0.1:5000`
+La aplicación estará disponible en `http://127.0.0.1:5001`
 
 ## Uso
 
@@ -96,23 +96,45 @@ La aplicación estará disponible en `http://127.0.0.1:5000`
 AcortadorEnlaces/
 ├── acortadorenlaces.py          # Punto de entrada principal
 ├── config.py                     # Configuración de la aplicación
+├── README.md                     # Este archivo
 ├── requirements.txt              # Dependencias de Python
+├── SQLAlchemy_SETUP.txt          # Notas de configuración de SQLAlchemy
+├── tests.py                      # Pruebas básicas
 ├── .env                          # Variables de entorno (no subir a git)
 ├── .gitignore                    # Archivos ignorados por git
-├── data/
-│   └── app.db                    # Base de datos SQLite (se crea tras flask db upgrade)
+├── data/                         # Directorio para la base de datos
+├── logs/                         # Logs de la aplicación
 ├── migrations/                   # Migraciones de BD (Flask-Migrate)
-└── app/
-    ├── __init__.py              # Inicialización de la app y extensiones
+│   ├── alembic.ini
+│   ├── env.py
+│   ├── README
+│   ├── script.py.mako
+│   └── versions/
+│       └── 405b0646522c_initial_migration.py
+├── scripts/                      # Scripts auxiliares
+│   └── init_db.py                # Inicialización de la base de datos
+├── tests/                        # Pruebas unitarias
+│   ├── __init__.py
+│   └── test_basic.py
+└── app/                          # Código de la aplicación
+    ├── __init__.py              # Inicialización del paquete app
     ├── models.py                # Modelos de BD (User, URL)
-    ├── routes/
+    ├── core/                     # Configuración central
+    │   └── __init__.py          # Creación de la app y configuración de extensiones
+    ├── routes/                   # Rutas de la aplicación
+    │   ├── __init__.py
     │   ├── main.py              # Rutas de acortamiento y redirección
     │   └── auth.py              # Rutas de autenticación (registro/login/logout)
-    └── templates/
-        ├── index.html           # Página principal
-        ├── login.html           # Formulario de login
-        ├── register.html        # Formulario de registro
-        └── dashboard.html       # Panel de control del usuario
+    ├── services/                 # Lógica de negocio
+    │   └── __init__.py          # Servicios para URLs y usuarios
+    ├── templates/                # Plantillas HTML
+    │   ├── index.html           # Página principal
+    │   ├── login.html           # Formulario de login
+    │   ├── register.html        # Formulario de registro
+    │   ├── dashboard.html       # Panel de control del usuario
+    │   └── 404.html             # Página de error 404
+    └── utils/                    # Utilidades
+        └── __init__.py          # Funciones auxiliares
 ```
 
 ## API Endpoints
@@ -124,7 +146,7 @@ AcortadorEnlaces/
 - **Respuesta exitosa** (201):
   ```json
   {
-    "shortUrl": "http://localhost:5000/ABC123",
+    "shortUrl": "http://localhost:5001/ABC123",
     "alias": "ABC123"
   }
   ```
@@ -134,7 +156,7 @@ AcortadorEnlaces/
 
 **GET** `/<alias>`
 - Redirige automáticamente a la URL original
-- Ej: `http://localhost:5000/ABC123` → `https://ejemplo.com/url-larga`
+- Ej: `http://localhost:5001/ABC123` → `https://ejemplo.com/url-larga`
 
 ### URLs del usuario (requiere autenticación)
 
@@ -246,5 +268,4 @@ Las contribuciones son bienvenidas. Para cambios mayores, abre un issue primero 
 Este proyecto está bajo la licencia MIT. Ver `LICENSE` para más detalles.
 
 ---
-
-**Desarrollado con ❤️ usando Flask y SQLAlchemy**
+*Copyright (c) 2026 Juande Molina*

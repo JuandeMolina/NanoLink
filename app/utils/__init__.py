@@ -1,4 +1,13 @@
-"""Utility functions."""
+"""
+Module Name: Utility functions
+Description:
+    This module contains utility functions for URL validation and sanitization.
+    These functions are used across the application to ensure that user input
+    is properly validated and sanitized before being processed or stored.
+Author: Juande Molina
+Copyright: (c) 2026 JuandeMolina
+License: MIT
+"""
 
 import re
 
