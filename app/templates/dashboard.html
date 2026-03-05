@@ -46,7 +46,10 @@
             <form id="shortener-form">
                 <div class="mb-3">
                     <label for="originalUrl" class="form-label">URL a acortar</label>
-                    <input type="url" class="form-control" id="originalUrl" placeholder="https://ejemplo.com/mi-larga-url" required>
+                    <div class="input-group">
+                        <input type="url" class="form-control" id="originalUrl" placeholder="https://ejemplo.com/mi-larga-url" required>
+                        <button class="btn btn-outline-secondary" id="pasteBtn" type="button" title="Pegar desde portapapeles">📋 Pegar</button>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Acortar</button>
             </form>
@@ -108,6 +111,7 @@
         const resultSection = document.getElementById('resultSection');
         const shortUrlInput = document.getElementById('shortUrl');
         const copyBtn = document.getElementById('copyBtn');
+        const pasteBtn = document.getElementById('pasteBtn');
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -149,6 +153,16 @@
                 setTimeout(() => copyBtn.textContent = 'Copiar', 1500);
             } catch (err) {
                 alert('No se pudo copiar automáticamente. Selecciona manualmente.');
+            }
+        });
+
+        pasteBtn.addEventListener('click', async () => {
+            try {
+                const text = await navigator.clipboard.readText();
+                originalUrl.value = text;
+                originalUrl.focus();
+            } catch (err) {
+                alert('No se pudo leer el portapapeles. Asegúrate de que tienes permisos.');
             }
         });
     

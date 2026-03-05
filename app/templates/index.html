@@ -81,7 +81,10 @@
             <form id="shortener-form">
               <div class="mb-3">
                 <label for="originalUrl" class="form-label">URL a acortar</label>
-                <input type="url" class="form-control" id="originalUrl" placeholder="https://ejemplo.com/mi-larga-url" required>
+                <div class="input-group">
+                  <input type="url" class="form-control" id="originalUrl" placeholder="https://ejemplo.com/mi-larga-url" required>
+                  <button class="btn btn-outline-secondary" id="pasteBtn" type="button" title="Pegar desde portapapeles">📋 Pegar</button>
+                </div>
                 <div class="form-text small-note">Pega aquí la URL larga que quieres acortar.</div>
               </div>
 
@@ -131,6 +134,7 @@
       const shortUrlInput = document.getElementById('shortUrl');
       const copyBtn = document.getElementById('copyBtn');
       const clearBtn = document.getElementById('clearBtn');
+      const pasteBtn = document.getElementById('pasteBtn');
 
       // Envía la petición al backend para acortar
       // credentials: 'include' mantiene la sesión autenticada si el usuario está logeado
@@ -178,6 +182,16 @@
         originalUrl.value = '';
         shortUrlInput.value = '';
         resultSection.classList.add('d-none');
+      });
+
+      pasteBtn.addEventListener('click', async () => {
+        try {
+          const text = await navigator.clipboard.readText();
+          originalUrl.value = text;
+          originalUrl.focus();
+        } catch (err) {
+          alert('No se pudo leer el portapapeles. Asegúrate de que tienes permisos.');
+        }
       });
     </script>
   </body>
