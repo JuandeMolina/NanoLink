@@ -1,20 +1,12 @@
 from flask import Blueprint, render_template, request, redirect, jsonify
 from flask_login import current_user, login_required
-from app import db
-from app.models import URL
-from secrets import choice
+from ..core import db
+from ..models import URL
+from ..services import URLService
+from ..utils import validate_url, sanitize_url
 import sqlalchemy
-import string
 
 main = Blueprint("main", __name__)
-
-
-def generate_alias(length=6):
-    alphabet = string.ascii_uppercase + string.digits
-    alias = ""
-    for _ in range(length):
-        alias += choice(alphabet)
-    return alias
 
 
 @main.route("/", methods=["GET"])
@@ -34,36 +26,26 @@ def api_shorten():
     if not url:
         return jsonify({"error": "missing_url"}), 400
 
-    # Validación básica: requiere http:// o https://
-    if not (url.startswith("http://") or url.startswith("https://")):
+    # Validación y sanitización
+    url = sanitize_url(url)
+    if not validate_url(url):
         return jsonify({"error": "invalid_url"}), 400
 
-    # Generar un alias único (comprobar colisiones en BD)
-    alias = generate_alias(6)
-    attempt = 0
-    while URL.query.filter_by(alias=alias).first() is not None and attempt < 5:
-        alias = generate_alias(6)
-        attempt += 1
-    if URL.query.filter_by(alias=alias).first() is not None:
-        return jsonify({"error": "could_not_generate_alias"}), 500
-
-    # Guardar en BD: si el usuario está autenticado, asociar la URL a su cuenta
+    # Crear URL corta usando el servicio
     user_id = current_user.id if current_user.is_authenticated else None
-    new_url = URL(alias=alias, original_url=url, user_id=user_id)
     try:
-        db.session.add(new_url)
-        db.session.commit()
+        new_url = URLService.create_short_url(url, user_id)
     except sqlalchemy.exc.SQLAlchemyError:
         db.session.rollback()
         return jsonify({"error": "storage_error"}), 500
 
-    short_url = request.host_url.rstrip("/") + "/" + alias
-    return jsonify({"shortUrl": short_url, "alias": alias}), 201
+    short_url = request.host_url.rstrip("/") + "/" + new_url.alias
+    return jsonify({"shortUrl": short_url, "alias": new_url.alias}), 201
 
 
 @main.route("/<short_id>", methods=["GET"])
 def redirect_short(short_id):
-    target = URL.query.filter_by(alias=short_id).first()
+    target = URLService.get_url_by_alias(short_id)
     if not target:
         return "URL no encontrada", 404
     return redirect(target.original_url)
@@ -109,19 +91,11 @@ def delete_user_url(url_id):
     Eliminar una URL perteneciente al usuario autenticado.
     Endpoint: DELETE /api/urls/<url_id>
     """
-    target = URL.query.get(url_id)
-    if not target:
-        return jsonify({"error": "not_found"}), 404
-
-    # Solo el propietario puede borrar
-    if target.user_id != current_user.id:
-        return jsonify({"error": "forbidden"}), 403
-
     try:
-        db.session.delete(target)
-        db.session.commit()
+        success = URLService.delete_url(url_id, current_user.id)
+        if not success:
+            return jsonify({"error": "not_found"}), 404
+        return jsonify({"success": True}), 200
     except sqlalchemy.exc.SQLAlchemyError:
         db.session.rollback()
         return jsonify({"error": "delete_failed"}), 500
-
-    return jsonify({"success": True}), 200

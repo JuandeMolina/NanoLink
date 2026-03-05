@@ -1,0 +1,54 @@
+Exception on / [GET]
+Traceback (most recent call last):
+  File "/home/juandediosmolinaperales/.local/lib/python3.10/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/juandediosmolinaperales/.local/lib/python3.10/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/juandediosmolinaperales/.local/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/juandediosmolinaperales/.local/lib/python3.10/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/juandediosmolinaperales/Escritorio/AcortadorEnlaces/app/routes/main.py", line 14, in index
+    return render_template("index.html")
+  File "/home/juandediosmolinaperales/.local/lib/python3.10/site-packages/flask/templating.py", line 150, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/home/juandediosmolinaperales/.local/lib/python3.10/site-packages/jinja2/environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/home/juandediosmolinaperales/.local/lib/python3.10/site-packages/jinja2/environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+  File "/home/juandediosmolinaperales/.local/lib/python3.10/site-packages/jinja2/environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/juandediosmolinaperales/.local/lib/python3.10/site-packages/jinja2/loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/home/juandediosmolinaperales/.local/lib/python3.10/site-packages/flask/templating.py", line 66, in get_source
+    return self._get_source_fast(environment, template)
+  File "/home/juandediosmolinaperales/.local/lib/python3.10/site-packages/flask/templating.py", line 100, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: index.html
+Exception on / [GET]
+Traceback (most recent call last):
+  File "/home/juandediosmolinaperales/.local/lib/python3.10/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/juandediosmolinaperales/.local/lib/python3.10/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/juandediosmolinaperales/.local/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/juandediosmolinaperales/.local/lib/python3.10/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/juandediosmolinaperales/Escritorio/AcortadorEnlaces/app/routes/main.py", line 14, in index
+    return render_template("index.html")
+  File "/home/juandediosmolinaperales/.local/lib/python3.10/site-packages/flask/templating.py", line 150, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/home/juandediosmolinaperales/.local/lib/python3.10/site-packages/jinja2/environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/home/juandediosmolinaperales/.local/lib/python3.10/site-packages/jinja2/environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+  File "/home/juandediosmolinaperales/.local/lib/python3.10/site-packages/jinja2/environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/juandediosmolinaperales/.local/lib/python3.10/site-packages/jinja2/loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/home/juandediosmolinaperales/.local/lib/python3.10/site-packages/flask/templating.py", line 66, in get_source
+    return self._get_source_fast(environment, template)
+  File "/home/juandediosmolinaperales/.local/lib/python3.10/site-packages/flask/templating.py", line 100, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: index.html

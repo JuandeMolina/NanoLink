@@ -5,3 +5,4 @@ Flask-Login
 python-dotenv
 Werkzeug
 psycopg2-binary
+pytest
