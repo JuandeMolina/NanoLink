@@ -1,210 +1,228 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Acortador de enlaces</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-      body {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, #f6f9ff 0%, #f0f7f4 100%);
-        font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      }
-      .card {
-        border: none;
-        border-radius: 16px;
-        box-shadow: 0 8px 30px rgba(20, 30, 50, 0.08);
-      }
-      .brand {
-        font-weight: 700;
-        letter-spacing: -0.5px;
-      }
-      .muted { color: #6b7280; }
-      .result-input {
-        background-color: #f8fafb;
-        border: 1px dashed #d1d5db;
-      }
-      .small-note { font-size: 0.9rem; color: #6b7280; }
-    </style>
-  </head>
-  <body>
 
-    <!-- Barra de navegación con enlaces de autenticación -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="{{ url_for('main.index') }}">AcortadorEnlaces</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            {% if current_user.is_authenticated %}
-              <!-- Usuario autenticado: mostrar dashboard y logout -->
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('main.dashboard') }}">Mi dashboard</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('auth.logout') }}">Cerrar sesión ({{ current_user.username }})</a>
-              </li>
-            {% else %}
-              <!-- Usuario no autenticado: mostrar login y register -->
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('auth.login') }}">Iniciar sesión</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('auth.register') }}">Registrarse</a>
-              </li>
-            {% endif %}
-          </ul>
-        </div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acortador de enlaces</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #f6f9ff 0%, #f0f7f4 100%);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    .card {
+      border: none;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(20, 30, 50, 0.08);
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .muted {
+      color: #6b7280;
+    }
+
+    .result-input {
+      background-color: #f8fafb;
+      border: 1px dashed #d1d5db;
+    }
+
+    .small-note {
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Barra de navegación con enlaces de autenticación -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{{ url_for('main.index') }}">AcortadorEnlaces</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          {% if current_user.is_authenticated %}
+          <!-- Usuario autenticado: mostrar dashboard y logout -->
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('main.dashboard') }}">Mi dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('auth.logout') }}">Cerrar sesión ({{ current_user.username }})</a>
+          </li>
+          {% else %}
+          <!-- Usuario no autenticado: mostrar login y register -->
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('auth.login') }}">Iniciar sesión</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('auth.register') }}">Registrarse</a>
+          </li>
+          {% endif %}
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-    <main class="container p-3" style="max-width: 920px; margin-top: 70px;">
-      <div class="row g-4 align-items-center">
-        <div class="col-12 col-lg-6">
-          <div class="card p-4">
-            <div class="d-flex align-items-center gap-3">
-              <div class="rounded-circle bg-primary d-inline-flex align-items-center justify-content-center" style="width:48px;height:48px;color:#fff;font-weight:700;">AE</div>
-              <div>
-                <div class="brand">AcortadorEnlaces</div>
-                <div class="muted">Corta tus enlaces en segundos</div>
-              </div>
+  <main class="container p-3" style="max-width: 920px; margin-top: 70px;">
+    <div class="row g-4 align-items-center">
+      <div class="col-12 col-lg-6">
+        <div class="card p-4">
+          <div class="d-flex align-items-center gap-3">
+            <div class="rounded-circle bg-primary d-inline-flex align-items-center justify-content-center"
+              style="width:48px;height:48px;color:#fff;font-weight:700;">AE</div>
+            <div>
+              <div class="brand">AcortadorEnlaces</div>
+              <div class="muted">Corta tus enlaces en segundos</div>
             </div>
+          </div>
 
-            <hr>
+          <hr>
 
-            <form id="shortener-form">
-              <div class="mb-3">
-                <label for="originalUrl" class="form-label">URL a acortar</label>
-                <div class="input-group">
-                  <input type="url" class="form-control" id="originalUrl" placeholder="https://ejemplo.com/mi-larga-url" required>
-                  <button class="btn btn-outline-secondary" id="pasteBtn" type="button" title="Pegar desde portapapeles">📋 Pegar</button>
-                </div>
-                <div class="form-text small-note">Pega aquí la URL larga que quieres acortar.</div>
-              </div>
-
-              <div class="d-flex gap-2">
-                <button type="submit" class="btn btn-primary">Acortar</button>
-                <button type="button" id="clearBtn" class="btn btn-outline-secondary">Limpiar</button>
-              </div>
-            </form>
-
-            <div id="resultSection" class="mt-4 d-none">
-              <label for="shortUrl" class="form-label">URL corta</label>
+          <form id="shortener-form">
+            <div class="mb-3">
+              <label for="originalUrl" class="form-label">URL a acortar</label>
               <div class="input-group">
-                <input type="text" id="shortUrl" class="form-control result-input" readonly>
-                <button class="btn btn-outline-secondary" id="copyBtn" type="button">Copiar</button>
+                <input type="url" class="form-control" id="originalUrl" placeholder="https://ejemplo.com/mi-larga-url"
+                  required>
+                <button class="btn btn-outline-secondary" id="pasteBtn" type="button"
+                  title="Pegar desde portapapeles">📋 Pegar</button>
               </div>
+              <div class="form-text small-note">Pega aquí la URL larga que quieres acortar.</div>
             </div>
 
-          </div>
-        </div>
+            <div class="d-flex gap-2">
+              <button type="submit" class="btn btn-primary">Acortar</button>
+              <button type="button" id="clearBtn" class="btn btn-outline-secondary">Limpiar</button>
+            </div>
+          </form>
 
-        <div class="col-12 col-lg-6 d-none d-lg-block">
-          <div class="p-4">
-            <h3 class="mb-2">Rápido. Sencillo. Seguro.</h3>
-            <p class="muted">Crea enlaces cortos que puedes compartir en redes, emails o mensajes. Puedes especificar un alias o dejar que el sistema lo genere por ti.</p>
-
-            <ul class="muted">
-              <li>Interfaz limpia y ligera</li>
-              <li>Alias personalizado (opcional)</li>
-              <li>Preparado para integrar con tu backend</li>
-            </ul>
-
-            <div class="mt-4">
-              <img src="https://images.unsplash.com/photo-1506806732259-39c2d0268443?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Ilustración" class="img-fluid rounded" style="max-height:260px;object-fit:cover;">
+          <div id="resultSection" class="mt-4 d-none">
+            <label for="shortUrl" class="form-label">URL corta</label>
+            <div class="input-group">
+              <input type="text" id="shortUrl" class="form-control result-input" readonly>
+              <button class="btn btn-outline-secondary" id="copyBtn" type="button">Copiar</button>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
 
-      <footer class="text-center mt-4 muted small-note">Hecho con ❤ — AcortadorEnlaces</footer>
-    </main>
+      <div class="col-12 col-lg-6 d-none d-lg-block">
+        <div class="p-4">
+          <h3 class="mb-2">Rápido. Sencillo. Seguro.</h3>
+          <p class="muted">Crea enlaces cortos que puedes compartir en redes, emails o mensajes. Puedes especificar un
+            alias o dejar que el sistema lo genere por ti.</p>
 
-    <script>
-      const form = document.getElementById('shortener-form');
-      const originalUrl = document.getElementById('originalUrl');
-      const resultSection = document.getElementById('resultSection');
-      const shortUrlInput = document.getElementById('shortUrl');
-      const copyBtn = document.getElementById('copyBtn');
-      const clearBtn = document.getElementById('clearBtn');
-      const pasteBtn = document.getElementById('pasteBtn');
+          <ul class="muted">
+            <li>Interfaz limpia y ligera</li>
+            <li>Alias personalizado (opcional)</li>
+            <li>Preparado para integrar con tu backend</li>
+          </ul>
 
-      // Envía la petición al backend para acortar
-      // credentials: 'include' mantiene la sesión autenticada si el usuario está logeado
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        if (!originalUrl.checkValidity()) return originalUrl.reportValidity();
+          <div class="mt-4">
+            <img
+              src="https://images.unsplash.com/photo-1506806732259-39c2d0268443?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder"
+              alt="Ilustración" class="img-fluid rounded" style="max-height:260px;object-fit:cover;">
+          </div>
+        </div>
+      </div>
 
-        const payload = {
-          url: originalUrl.value.trim()
-        };
+    </div>
 
-        try {
-          const res = await fetch('/api/shorten', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-            credentials: 'include'  // Incluir cookies de sesión para autenticación
-          });
+  </main>
 
-          if (!res.ok) {
-            const err = await res.json().catch(() => ({}));
-            alert(err.error || 'Error al acortar la URL');
-            return;
-          }
+  <script>
+    const form = document.getElementById('shortener-form');
+    const originalUrl = document.getElementById('originalUrl');
+    const resultSection = document.getElementById('resultSection');
+    const shortUrlInput = document.getElementById('shortUrl');
+    const copyBtn = document.getElementById('copyBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const pasteBtn = document.getElementById('pasteBtn');
 
-          const data = await res.json();
-          shortUrlInput.value = data.shortUrl;
-          resultSection.classList.remove('d-none');
-        } catch (err) {
-          alert('Error de red o del servidor: ' + err.message);
+    // Envía la petición al backend para acortar
+    // credentials: 'include' mantiene la sesión autenticada si el usuario está logeado
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!originalUrl.checkValidity()) return originalUrl.reportValidity();
+
+      const payload = {
+        url: originalUrl.value.trim()
+      };
+
+      try {
+        const res = await fetch('/api/shorten', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+          credentials: 'include'  // Incluir cookies de sesión para autenticación
+        });
+
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          alert(err.error || 'Error al acortar la URL');
+          return;
         }
-      });
 
-      copyBtn.addEventListener('click', async () => {
-        try {
-          await navigator.clipboard.writeText(shortUrlInput.value);
-          copyBtn.textContent = 'Copiado';
-          setTimeout(() => copyBtn.textContent = 'Copiar', 1500);
-        } catch (err) {
-          alert('No se pudo copiar automáticamente. Selecciona y copia manualmente.');
+        const data = await res.json();
+        shortUrlInput.value = data.shortUrl;
+        resultSection.classList.remove('d-none');
+      } catch (err) {
+        alert('Error de red o del servidor: ' + err.message);
+      }
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(shortUrlInput.value);
+        copyBtn.textContent = 'Copiado';
+        setTimeout(() => copyBtn.textContent = 'Copiar', 1500);
+      } catch (err) {
+        alert('No se pudo copiar automáticamente. Selecciona y copia manualmente.');
+      }
+    });
+
+    clearBtn.addEventListener('click', () => {
+      originalUrl.value = '';
+      shortUrlInput.value = '';
+      resultSection.classList.add('d-none');
+    });
+
+    pasteBtn.addEventListener('click', async () => {
+      try {
+        // Verificar que la API Clipboard está disponible
+        if (!navigator.clipboard) {
+          throw new Error('API no disponible');
         }
-      });
-
-      clearBtn.addEventListener('click', () => {
-        originalUrl.value = '';
-        shortUrlInput.value = '';
-        resultSection.classList.add('d-none');
-      });
-
-      pasteBtn.addEventListener('click', async () => {
-        try {
-          // Verificar que la API Clipboard está disponible
-          if (!navigator.clipboard) {
-            throw new Error('API no disponible');
-          }
-          const text = await navigator.clipboard.readText();
-          if (text.trim()) {
-            originalUrl.value = text.trim();
-            originalUrl.focus();
-          } else {
-            alert('El portapapeles está vacío.');
-          }
-        } catch (err) {
-          // Fallback: mostrar instrucción más clara
-          const msg = err.name === 'NotAllowedError' 
-            ? 'Permiso denegado. Usa Ctrl+V o Cmd+V para pegar manualmente.'
-            : 'No se pudo acceder al portapapeles. Usa Ctrl+V o Cmd+V para pegar.';
-          alert(msg);
+        const text = await navigator.clipboard.readText();
+        if (text.trim()) {
+          originalUrl.value = text.trim();
+          originalUrl.focus();
+        } else {
+          alert('El portapapeles está vacío.');
         }
-      });
-    </script>
-  </body>
+      } catch (err) {
+        // Fallback: mostrar instrucción más clara
+        const msg = err.name === 'NotAllowedError'
+          ? 'Permiso denegado. Usa Ctrl+V o Cmd+V para pegar manualmente.'
+          : 'No se pudo acceder al portapapeles. Usa Ctrl+V o Cmd+V para pegar.';
+        alert(msg);
+      }
+    });
+  </script>
+</body>
+
 </html>

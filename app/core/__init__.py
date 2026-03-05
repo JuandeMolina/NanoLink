@@ -14,13 +14,19 @@ login_manager = LoginManager()
 
 def create_app(config_class=None):
     """Application factory pattern."""
-    app = Flask(__name__)
+    import os
+
+    template_dir = os.path.abspath(
+        os.path.join(os.path.dirname(__file__), "..", "templates")
+    )
+    app = Flask(__name__, template_folder=template_dir)
 
     # Load configuration
     if config_class:
         app.config.from_object(config_class)
     else:
         import config
+
         app.config.from_object(config.Config)
 
     # Initialize extensions
@@ -44,6 +50,7 @@ def create_app(config_class=None):
     @login_manager.user_loader
     def load_user(user_id):
         from ..models import User
+
         return User.query.get(int(user_id))
 
     return app
@@ -53,10 +60,10 @@ def setup_logging(app):
     """Setup basic logging configuration."""
     logging.basicConfig(
         level=logging.INFO,
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     )
     # Add file handler if needed
     if not app.debug:
-        file_handler = logging.FileHandler('app.log')
+        file_handler = logging.FileHandler("app.log")
         file_handler.setLevel(logging.WARNING)
         app.logger.addHandler(file_handler)
