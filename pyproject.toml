@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "NanoLink"
-version = "0.1.0"
-description = "Aplicación web para acortar URLs con soporte para registro de usuarios, autenticación y gestión de enlaces personalizados"
+version = "0.2.0"
+description = "Acortador de URLs con autenticación de usuarios, panel de control y panel de administración"
 authors = [
     {name = "Juande Molina", email = "mp.juande@gmail.com"}
 ]
@@ -36,9 +36,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/juandemolina/nanolink"
-Repository = "https://github.com/juandemolina/nanolink.git"
-Issues = "https://github.com/juandemolina/nanolink/issues"
+Homepage = "https://github.com/JuandeMolina/NanoLink"
+Repository = "https://github.com/JuandeMolina/NanoLink.git"
+Issues = "https://github.com/JuandeMolina/NanoLink/issues"
 
 [tool.setuptools]
 packages = ["app"]
