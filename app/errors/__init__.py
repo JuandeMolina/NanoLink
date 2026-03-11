@@ -13,6 +13,17 @@ from flask import render_template
 
 def register_error_handlers(app):
     
+    @app.errorhandler(403)
+    def forbidden(e):
+        return render_template(
+            "error.html",
+            code=403,
+            title="Acceso denegado",
+            description="¡Te pillé! ¿A dónde te crees que vas? "
+            "Voy a hacer como si no te hubiera visto, pero "
+            "vete de aquí y vuelve cuando tengas permiso, ¿de acuerdo?"
+        )
+    
     @app.errorhandler(404)
     def not_found(e):
         return render_template(
@@ -25,15 +36,14 @@ def register_error_handlers(app):
             "cuando vuelvas a la página de inicio."
         )
     
-    @app.errorhandler(403)
-    def forbidden(e):
+    @app.errorhandler(405)
+    def method_not_allowed(e):
         return render_template(
             "error.html",
-            code=403,
-            title="Acceso denegado",
-            description="¡Te pillé! ¿A dónde te crees que vas? "
-            "Voy a hacer como si no te hubiera visto, pero "
-            "vete de aquí y vuelve cuando tengas permiso, ¿de acuerdo?"
+            code=405,
+            title="Método no permitido",
+            description="¿Buscando algo? Porque aquí no hay nada que ver. "
+            "Circulen, por favor... (y traigan un método válido la próxima vez)."
         )
     
     @app.errorhandler(500)
