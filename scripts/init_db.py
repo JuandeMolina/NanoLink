@@ -25,7 +25,7 @@ from app.core import create_app
 def create_superuser(app):
     admin_username = os.environ.get("ADMIN_USERNAME", "admin")
     admin_email = os.environ.get("ADMIN_EMAIL", "admin@nanolink.com")
-    admin_password = os.environ.get("ADMIN_PASSWORD")
+    admin_password = os.environ.get("ADMIN_PASSWORD", "admin")
 
     if not admin_password:
         print(

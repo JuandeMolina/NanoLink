@@ -17,7 +17,7 @@
     "405": {
         "english_title": "Method Not Allowed",
         "spanish_title": "Método no permitido",
-        "description": "Un sabio filósofo dijo: \"El fin justifica los medios\". No estoy seguro de si eso es verdad, pero estos medios no llegan al fin que quieres."
+        "description": "Un sabio filósofo dijo: \"El fin justifica los medios\". No estoy seguro de si eso es verdad, pero sí sé estos medios no llegan al fin que quieres."
     },
     "429": {
         "english_title": "Too Many Requests",

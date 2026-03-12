@@ -16,9 +16,15 @@ from flask import (
     request,
     redirect,
     url_for,
-    abort
+    abort,
+    jsonify
 )
-from flask_login import login_user, logout_user, login_required
+from flask_login import (
+    login_user,
+    logout_user,
+    login_required,
+    current_user
+)
 
 from ..core import db
 from ..models import User
@@ -92,3 +98,39 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for("main.index"))
+
+@auth.route("/change-password", methods=["POST"])
+@login_required
+def change_password():
+    """
+    API endpoint para cambiar la contraseña del usuario autenticado.
+    Consumido por fetch() desde dashboard.html.
+    """
+    data = request.get_json(silent=True) or {}
+ 
+    current_password = data.get("current_password") or ""
+    new_password = data.get("new_password") or ""
+    confirm_password = data.get("confirm_password") or ""
+ 
+    if not current_password or not new_password or not confirm_password:
+        return jsonify({"error": "Rellena todos los campos."}), 400
+ 
+    if not current_user.check_password(current_password):
+        return jsonify({"error": "La contraseña actual es incorrecta."}), 401
+ 
+    if new_password != confirm_password:
+        return jsonify({"error": "Las contraseñas nuevas no coinciden."}), 400
+ 
+    if len(new_password) < 8:
+        return jsonify({"error": "La nueva contraseña debe tener al menos 8 caracteres."}), 400
+ 
+    if current_password == new_password:
+        return jsonify({"error": "La nueva contraseña debe ser distinta a la actual."}), 400
+ 
+    try:
+        current_user.set_password(new_password)
+        db.session.commit()
+        return jsonify({"success": True}), 200
+    except Exception:
+        db.session.rollback()
+        return jsonify({"error": "Error al guardar la contraseña."}), 500

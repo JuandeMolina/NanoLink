@@ -1,5 +1,6 @@
 {
     "chat.tools.terminal.autoApprove": {
         "/home/juande/projects/NanoLink/venv/bin/python": true
-    }
+    }, 
+    "python.terminal.useEnvFile": true
 }
