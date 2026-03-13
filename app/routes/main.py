@@ -70,9 +70,6 @@ def redirect_short(short_id):
 @main.route("/dashboard", methods=["GET"])
 @login_required
 def dashboard():
-    """
-    Panel de control del usuario: muestra sus URLs acortadas
-    """
     # Get all URLs created by user
     urls = URL.query.filter_by(user_id=current_user.id).all()
     return render_template("dashboard.html", urls=urls)

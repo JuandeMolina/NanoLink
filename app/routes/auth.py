@@ -103,8 +103,10 @@ def logout():
 @login_required
 def change_password():
     """
-    API endpoint para cambiar la contraseña del usuario autenticado.
-    Consumido por fetch() desde dashboard.html.
+    Change the current user's password. Expects JSON with:
+        - current_password: the user's current password (for verification)
+        - new_password: the desired new password
+        - confirm_password: should match new_password for confirmation  
     """
     data = request.get_json(silent=True) or {}
  
@@ -120,9 +122,6 @@ def change_password():
  
     if new_password != confirm_password:
         return jsonify({"error": "Las contraseñas nuevas no coinciden."}), 400
- 
-    if len(new_password) < 8:
-        return jsonify({"error": "La nueva contraseña debe tener al menos 8 caracteres."}), 400
  
     if current_password == new_password:
         return jsonify({"error": "La nueva contraseña debe ser distinta a la actual."}), 400
