@@ -6,7 +6,7 @@ Copyright: (c) 2026 JuandeMolina
 License: MIT
 """
 
-import requests
+from datetime import datetime
 
 from flask import Blueprint, render_template, jsonify, session, abort, url_for, redirect
 from flask_login import current_user, logout_user
@@ -29,6 +29,9 @@ def index():
         abort(503)
 
     data = r.json() if status == 200 else {}
+    for url in data.get("urls", []):
+        url["created_at"] = datetime.fromisoformat(url["created_at"])
+
     return render_template(
         "admin.html",
         users=data.get("users", []),

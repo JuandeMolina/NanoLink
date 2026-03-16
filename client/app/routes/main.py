@@ -6,7 +6,7 @@ Copyright: (c) 2026 JuandeMolina
 License: MIT
 """
 
-import requests
+from datetime import datetime
 
 from flask import (
     Blueprint,
@@ -18,6 +18,7 @@ from flask import (
     session,
     url_for,
 )
+from werkzeug import urls
 from flask_login import current_user, login_required, logout_user
 
 from ..utils import admin_required, api_get, api_post, api_delete, API_BASE
@@ -80,6 +81,8 @@ def dashboard():
         abort(503)
 
     urls = r.json() if status == 200 else []
+    for url in urls:
+        url["created_at"] = datetime.fromisoformat(url["created_at"])
     return render_template("dashboard.html", urls=urls)
 
 

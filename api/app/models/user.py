@@ -18,6 +18,7 @@ class User(db.Model):
     email: str = db.Column(db.String(120), unique=True, nullable=False)
     password_hash: str = db.Column(db.String(128), nullable=False)
     is_admin: bool = db.Column(db.Boolean, default=False)
+    is_superadmin: bool = db.Column(db.Boolean, default=False)
 
     urls = db.relationship(
         "URL", backref="owner", lazy=True, cascade="all, delete-orphan"

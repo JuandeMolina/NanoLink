@@ -50,7 +50,7 @@ def create_superuser(app):
                 print(f"[superuser] <{admin_username}> ya existe y es admin.")
             return
 
-        admin = User(username=admin_username, email=admin_email, is_admin=True)  # type: ignore
+        admin = User(username=admin_username, email=admin_email, is_admin=True, is_superadmin=True)  # type: ignore
         admin.set_password(admin_password)
         db.session.add(admin)
         db.session.commit()

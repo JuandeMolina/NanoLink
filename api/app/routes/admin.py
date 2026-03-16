@@ -34,6 +34,7 @@ user_item = ns.model(
         "username": fields.String,
         "email": fields.String,
         "is_admin": fields.Boolean,
+        "is_superadmin": fields.Boolean,
     },
 )
 
@@ -99,6 +100,7 @@ class AdminDashboard(Resource):
                     "username": u.username,
                     "email": u.email,
                     "is_admin": u.is_admin,
+                    "is_superadmin": u.is_superadmin,
                 }
                 for u in users
             ],
@@ -130,6 +132,9 @@ class ToggleAdmin(Resource):
         user = User.query.get(user_id)
         if not user:
             ns.abort(404, "user_not_found")
+        assert user is not None
+        if user.is_superadmin:
+            ns.abort(403, "superadmin_protected")
 
         try:
             user.is_admin = not user.is_admin  # type: ignore
@@ -155,6 +160,9 @@ class AdminUserDetail(Resource):
         user = User.query.get(user_id)
         if not user:
             ns.abort(404, "user_not_found")
+        assert user is not None
+        if user.is_superadmin:
+            ns.abort(403, "superadmin_protected")
 
         try:
             URL.query.filter_by(user_id=user.id).delete()  # type: ignore

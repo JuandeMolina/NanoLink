@@ -15,6 +15,7 @@
     .dash-page-header {
         margin-bottom: 28px;
     }
+
     .dash-page-header .eyebrow {
         font-size: 0.78rem;
         font-weight: 700;
@@ -23,11 +24,13 @@
         letter-spacing: 0.7px;
         margin-bottom: 6px;
     }
+
     .dash-page-header h2 {
         font-size: clamp(1.5rem, 3vw, 2rem);
         color: var(--text-dark);
         margin-bottom: 4px;
     }
+
     .dash-page-header p {
         font-size: 0.9rem;
         color: var(--text-muted);
@@ -49,7 +52,8 @@
     }
 
     .stat-icon {
-        width: 40px; height: 40px;
+        width: 40px;
+        height: 40px;
         border-radius: 12px;
         display: flex;
         align-items: center;
@@ -57,9 +61,18 @@
         font-size: 18px;
         flex-shrink: 0;
     }
-    .stat-icon-blue  { background: rgba(59,130,246,0.1); }
-    .stat-icon-green { background: rgba(16,185,129,0.1); }
-    .stat-icon-amber { background: rgba(245,158,11,0.1); }
+
+    .stat-icon-blue {
+        background: rgba(59, 130, 246, 0.1);
+    }
+
+    .stat-icon-green {
+        background: rgba(16, 185, 129, 0.1);
+    }
+
+    .stat-icon-amber {
+        background: rgba(245, 158, 11, 0.1);
+    }
 
     .stat-value {
         font-family: var(--font-display);
@@ -68,6 +81,7 @@
         line-height: 1;
         margin-bottom: 3px;
     }
+
     .stat-label {
         font-size: 0.78rem;
         color: var(--text-muted);
@@ -120,11 +134,12 @@
     .create-result {
         margin-top: 16px;
         padding: 14px;
-        background: rgba(59,130,246,0.05);
-        border: 1.5px dashed rgba(59,130,246,0.2);
+        background: rgba(59, 130, 246, 0.05);
+        border: 1.5px dashed rgba(59, 130, 246, 0.2);
         border-radius: var(--radius-md);
         animation: slideUp .3s var(--ease-spring) both;
     }
+
     .create-result label {
         font-size: 0.75rem;
         text-transform: uppercase;
@@ -156,14 +171,18 @@
         font-size: 0.78rem;
         font-weight: 700;
         color: var(--blue);
-        background: rgba(59,130,246,0.1);
-        border: 1px solid rgba(59,130,246,0.18);
+        background: rgba(59, 130, 246, 0.1);
+        border: 1px solid rgba(59, 130, 246, 0.18);
         border-radius: 99px;
         padding: 3px 10px;
     }
 
     /* ── URL list ── */
-    .url-list { display: flex; flex-direction: column; gap: 10px; }
+    .url-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
 
     .url-item {
         display: grid;
@@ -171,21 +190,23 @@
         gap: 12px;
         align-items: center;
         padding: 14px 16px;
-        background: rgba(255,255,255,0.55);
-        border: 1px solid rgba(148,163,184,0.16);
+        background: rgba(255, 255, 255, 0.55);
+        border: 1px solid rgba(148, 163, 184, 0.16);
         border-radius: var(--radius-md);
         transition: background .18s, border-color .18s, transform .18s;
         animation: slideUp .4s var(--ease-spring) both;
     }
 
     .url-item:hover {
-        background: rgba(255,255,255,0.85);
-        border-color: rgba(59,130,246,0.18);
+        background: rgba(255, 255, 255, 0.85);
+        border-color: rgba(59, 130, 246, 0.18);
         transform: translateY(-1px);
-        box-shadow: 0 4px 16px rgba(20,40,80,0.07);
+        box-shadow: 0 4px 16px rgba(20, 40, 80, 0.07);
     }
 
-    .url-item-info { min-width: 0; }
+    .url-item-info {
+        min-width: 0;
+    }
 
     .url-alias {
         display: inline-flex;
@@ -195,7 +216,7 @@
         font-size: 0.82rem;
         font-weight: 600;
         color: var(--blue);
-        background: rgba(59,130,246,0.08);
+        background: rgba(59, 130, 246, 0.08);
         border-radius: 6px;
         padding: 3px 8px;
         margin-bottom: 5px;
@@ -212,7 +233,10 @@
         white-space: nowrap;
         margin-bottom: 4px;
     }
-    .url-short-link:hover { color: var(--blue-dark); }
+
+    .url-short-link:hover {
+        color: var(--blue-dark);
+    }
 
     .url-original {
         font-size: 0.78rem;
@@ -229,12 +253,18 @@
         gap: 8px;
         margin-top: 5px;
     }
+
     .url-date {
         font-size: 0.73rem;
         color: var(--text-light);
     }
 
-    .url-item-actions { display: flex; gap: 6px; align-items: center; flex-shrink: 0; }
+    .url-item-actions {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+        flex-shrink: 0;
+    }
 
     /* ── Empty state ── */
     .empty-state {
@@ -245,16 +275,19 @@
         padding: 48px 20px;
         text-align: center;
     }
+
     .empty-icon {
         font-size: 42px;
         margin-bottom: 14px;
         opacity: 0.5;
     }
+
     .empty-state h3 {
         font-size: 1.05rem;
         color: var(--text-mid);
         margin-bottom: 6px;
     }
+
     .empty-state p {
         font-size: 0.85rem;
         color: var(--text-light);
@@ -266,13 +299,13 @@
         bottom: 28px;
         left: 50%;
         transform: translateX(-50%) translateY(20px);
-        background: rgba(15,23,42,0.92);
+        background: rgba(15, 23, 42, 0.92);
         color: #fff;
         font-size: 0.86rem;
         font-weight: 500;
         padding: 12px 22px;
         border-radius: 99px;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
         z-index: 999;
         opacity: 0;
         backdrop-filter: blur(12px);
@@ -280,6 +313,7 @@
         pointer-events: none;
         white-space: nowrap;
     }
+
     .toast.show {
         opacity: 1;
         transform: translateX(-50%) translateY(0);
@@ -366,11 +400,26 @@
 
     /* Responsive */
     @media (max-width: 760px) {
-        .dash-columns { flex-direction: column; }
-        .dash-col-left { width: 100%; position: static; }
-        .stats-row { grid-template-columns: 1fr 1fr; }
-        .stats-row .stat-card:last-child { display: none; }
-        .dash-wrapper { padding: 76px 16px 40px; }
+        .dash-columns {
+            flex-direction: column;
+        }
+
+        .dash-col-left {
+            width: 100%;
+            position: static;
+        }
+
+        .stats-row {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .stats-row .stat-card:last-child {
+            display: none;
+        }
+
+        .dash-wrapper {
+            padding: 76px 16px 40px;
+        }
     }
 </style>
 {% endblock %}
@@ -390,7 +439,10 @@
         </li>
         <li>
             <a href="{{ url_for('auth.logout') }}" class="btn btn-ghost btn-sm">
-                <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+                <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
                 Salir
             </a>
         </li>
@@ -438,141 +490,168 @@
 
         <!-- Left column -->
         <div class="dash-col-left">
-        <div class="card create-card anim-slide-up anim-delay-2">
-            <h3>Nuevo enlace</h3>
-            <p class="card-desc">Acorta una URL y queda guardada en tu cuenta.</p>
+            <div class="card create-card anim-slide-up anim-delay-2">
+                <h3>Nuevo enlace</h3>
+                <p class="card-desc">Acorta una URL y queda guardada en tu cuenta.</p>
 
-            <div class="form-group">
-                <label for="originalUrl">URL a acortar</label>
-                <div class="input-group">
-                    <input type="url" id="originalUrl" placeholder="https://ejemplo.com/ruta-larga" required>
-                    <button class="btn btn-icon" id="pasteBtn" type="button" title="Pegar">
-                        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
-                    </button>
+                <div class="form-group">
+                    <label for="originalUrl">URL a acortar</label>
+                    <div class="input-group">
+                        <input type="url" id="originalUrl" placeholder="https://ejemplo.com/ruta-larga" required>
+                        <button class="btn btn-icon" id="pasteBtn" type="button" title="Pegar">
+                            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
-            </div>
 
-            <button type="button" id="shortenBtn" class="btn btn-primary w-full">
-                <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101"/><path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 015.656 0l.828.828a4 4 0 01-5.656 5.656l-1.1-1.1"/></svg>
-                Acortar enlace
-            </button>
+                <button type="button" id="shortenBtn" class="btn btn-primary w-full">
+                    <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M14.828 14.828a4 4 0 015.656 0l.828.828a4 4 0 01-5.656 5.656l-1.1-1.1" />
+                    </svg>
+                    Acortar enlace
+                </button>
 
-            <div id="createResult" class="create-result d-none">
-                <label>Enlace creado</label>
-                <div class="input-group">
-                    <input type="text" id="shortUrl" readonly>
-                    <button class="btn btn-primary btn-sm" id="copyBtn">Copiar</button>
+                <div id="createResult" class="create-result d-none">
+                    <label>Enlace creado</label>
+                    <div class="input-group">
+                        <input type="text" id="shortUrl" readonly>
+                        <button class="btn btn-primary btn-sm" id="copyBtn">Copiar</button>
+                    </div>
                 </div>
-            </div>
-        </div><!-- /create-card -->
+            </div><!-- /create-card -->
 
-        <!-- Account section -->
-        <div class="card account-card anim-slide-up anim-delay-4">
-            <h3>Cambiar contraseña</h3>
-            <p class="card-desc">Elige una contraseña segura de al menos 8 caracteres.</p>
+            <!-- Account section -->
+            <div class="card account-card anim-slide-up anim-delay-4">
+                <h3>Cambiar contraseña</h3>
+                <p class="card-desc">Elige una nueva contraseña. Si es segura, mejor que mejor.</p>
 
-            <div id="pwFeedback" class="d-none"></div>
+                <div id="pwFeedback" class="d-none"></div>
 
-            <div class="form-group">
-                <label for="currentPassword">Contraseña actual</label>
-                <input type="password" id="currentPassword" placeholder="••••••••">
-            </div>
-            <div class="form-group">
-                <label for="newPassword">Nueva contraseña</label>
-                <input type="password" id="newPassword" placeholder="••••••••">
-            </div>
-            <div class="form-group">
-                <label for="confirmPassword">Confirmar nueva contraseña</label>
-                <input type="password" id="confirmPassword" placeholder="••••••••">
-            </div>
+                <div class="form-group">
+                    <label for="currentPassword">Contraseña actual</label>
+                    <input type="password" id="currentPassword" placeholder="••••••••">
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">Nueva contraseña</label>
+                    <input type="password" id="newPassword" placeholder="••••••••">
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirmar nueva contraseña</label>
+                    <input type="password" id="confirmPassword" placeholder="••••••••">
+                </div>
 
-            <button type="button" id="changePasswordBtn" class="btn btn-primary w-full">
-                <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                </svg>
-                Actualizar contraseña
-            </button>
-        </div><!-- /account-card -->
+                <button type="button" id="changePasswordBtn" class="btn btn-primary w-full">
+                    <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        stroke-width="2.2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    Actualizar contraseña
+                </button>
+            </div><!-- /account-card -->
 
         </div><!-- /dash-col-left -->
 
         <!-- Right column -->
         <div class="dash-col-right">
 
-        <!-- URL list card -->
-        <div class="card urls-card anim-slide-up anim-delay-3">
-            <div class="urls-card-header">
-                <h3>Mis enlaces</h3>
-                <span class="url-count">{{ urls|length }}</span>
-            </div>
+            <!-- URL list card -->
+            <div class="card urls-card anim-slide-up anim-delay-3">
+                <div class="urls-card-header">
+                    <h3>Mis enlaces</h3>
+                    <span class="url-count">{{ urls|length }}</span>
+                </div>
 
-            {% if urls %}
-            <div class="url-list" id="urlList">
-                {% for url in urls %}
-                <div class="url-item" data-url-id="{{ url.id }}" style="animation-delay: {{ '%.2f' % (loop.index0 * 0.05) }}s">
-                    <div class="url-item-info">
-                        <span class="url-alias">
-                            <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101"/></svg>
-                            {{ url.alias }}
-                        </span>
-                        <a href="{{ request.host_url.rstrip('/') }}/{{ url.alias }}"
-                           target="_blank"
-                           class="url-short-link">
-                            {{ request.host_url.rstrip('/') }}/{{ url.alias }}
-                        </a>
-                        <span class="url-original" title="{{ url.original_url }}">{{ url.original_url }}</span>
-                        <div class="url-meta">
-                            <span class="url-date">
-                                <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="vertical-align:-1px;margin-right:2px"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-                                {{ url.created_at.strftime('%d/%m/%Y') }}
+                {% if urls %}
+                <div class="url-list" id="urlList">
+                    {% for url in urls %}
+                    <div class="url-item" data-url-id="{{ url.id }}"
+                        style="animation-delay: {{ '%.2f' % (loop.index0 * 0.05) }}s">
+                        <div class="url-item-info">
+                            <span class="url-alias">
+                                <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101" />
+                                </svg>
+                                {{ url.alias }}
                             </span>
+                            <a href="{{ request.host_url.rstrip('/') }}/{{ url.alias }}" target="_blank"
+                                class="url-short-link">
+                                {{ request.host_url.rstrip('/') }}/{{ url.alias }}
+                            </a>
+                            <span class="url-original" title="{{ url.original_url }}">{{ url.original_url }}</span>
+                            <div class="url-meta">
+                                <span class="url-date">
+                                    <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                        stroke-width="2" style="vertical-align:-1px;margin-right:2px">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                        <path d="M16 2v4M8 2v4M3 10h18" />
+                                    </svg>
+                                    {{ url.created_at.strftime('%d/%m/%Y') }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="url-item-actions">
+                            <button class="btn btn-icon btn-sm copy-item-btn"
+                                data-url="{{ request.host_url.rstrip('/') }}/{{ url.alias }}" title="Copiar enlace">
+                                <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    stroke-width="2.2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                                </svg>
+                            </button>
+                            <button class="btn btn-danger btn-sm delete-btn" data-url-id="{{ url.id }}"
+                                title="Eliminar">
+                                <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    stroke-width="2.2">
+                                    <polyline points="3 6 5 6 21 6" />
+                                    <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6" />
+                                    <path d="M10 11v6M14 11v6" />
+                                    <path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2" />
+                                </svg>
+                            </button>
                         </div>
                     </div>
-                    <div class="url-item-actions">
-                        <button class="btn btn-icon btn-sm copy-item-btn"
-                                data-url="{{ request.host_url.rstrip('/') }}/{{ url.alias }}"
-                                title="Copiar enlace">
-                            <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-                        </button>
-                        <button class="btn btn-danger btn-sm delete-btn"
-                                data-url-id="{{ url.id }}"
-                                title="Eliminar">
-                            <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
-                        </button>
-                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
-            </div>
-            {% else %}
-            <div class="empty-state">
-                <div class="empty-icon">🔗</div>
-                <h3>Aún no tienes enlaces</h3>
-                <p>Crea tu primer enlace acortado usando el formulario de la izquierda.</p>
-            </div>
-            {% endif %}
-        </div><!-- /urls-card -->
+                {% else %}
+                <div class="empty-state">
+                    <div class="empty-icon">🔗</div>
+                    <h3>Aún no tienes enlaces</h3>
+                    <p>Crea tu primer enlace acortado usando el formulario de la izquierda.</p>
+                </div>
+                {% endif %}
+            </div><!-- /urls-card -->
 
-        <!-- Account info card -->
-        <div class="card account-info-card anim-slide-up anim-delay-4">
-            <h3>Información de la cuenta</h3>
-            <div class="info-row">
-                <span class="info-label">Usuario</span>
-                <span class="info-value">{{ current_user.username }}</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Email</span>
-                <span class="info-value">{{ current_user.email }}</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Rol</span>
-                <span class="info-value">{{ 'Administrador' if current_user.is_admin else 'Usuario' }}</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Enlaces creados</span>
-                <span class="info-value">{{ urls|length }}</span>
-            </div>
-        </div><!-- /account-info-card -->
+            <!-- Account info card -->
+            <div class="card account-info-card anim-slide-up anim-delay-4">
+                <h3>Información de la cuenta</h3>
+                <div class="info-row">
+                    <span class="info-label">Usuario</span>
+                    <span class="info-value">{{ current_user.username }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Email</span>
+                    <span class="info-value">{{ current_user.email }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Rol</span>
+                    <span class="info-value">{{ 'Administrador' if current_user.is_admin else 'Usuario' }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Enlaces creados</span>
+                    <span class="info-value">{{ urls|length }}</span>
+                </div>
+            </div><!-- /account-info-card -->
 
         </div><!-- /dash-col-right -->
 
@@ -586,14 +665,14 @@
 
 {% block scripts %}
 <script>
-    const originalUrl  = document.getElementById('originalUrl');
+    const originalUrl = document.getElementById('originalUrl');
     const createResult = document.getElementById('createResult');
-    const shortUrl     = document.getElementById('shortUrl');
-    const shortenBtn   = document.getElementById('shortenBtn');
-    const copyBtn      = document.getElementById('copyBtn');
-    const pasteBtn     = document.getElementById('pasteBtn');
-    const urlList      = document.getElementById('urlList');
-    const toastEl      = document.getElementById('toast');
+    const shortUrl = document.getElementById('shortUrl');
+    const shortenBtn = document.getElementById('shortenBtn');
+    const copyBtn = document.getElementById('copyBtn');
+    const pasteBtn = document.getElementById('pasteBtn');
+    const urlList = document.getElementById('urlList');
+    const toastEl = document.getElementById('toast');
 
     let toastTimer;
     function showToast(msg, duration = 2200) {
@@ -707,9 +786,9 @@
     });
     // ── Change password ───────────────────────────────────────────────
     const changePasswordBtn = document.getElementById('changePasswordBtn');
-    const pwFeedback        = document.getElementById('pwFeedback');
+    const pwFeedback = document.getElementById('pwFeedback');
     const currentPasswordEl = document.getElementById('currentPassword');
-    const newPasswordEl     = document.getElementById('newPassword');
+    const newPasswordEl = document.getElementById('newPassword');
     const confirmPasswordEl = document.getElementById('confirmPassword');
 
     function showPwFeedback(msg, isError = true) {
@@ -717,8 +796,8 @@
         pwFeedback.innerHTML = `
             <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" style="flex-shrink:0">
                 ${isError
-                    ? '<circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01"/>'
-                    : '<path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>'}
+                ? '<circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01"/>'
+                : '<path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>'}
             </svg>
             ${msg}`;
         pwFeedback.classList.remove('d-none');
@@ -726,7 +805,7 @@
 
     changePasswordBtn.addEventListener('click', async () => {
         const current_password = currentPasswordEl.value;
-        const new_password     = newPasswordEl.value;
+        const new_password = newPasswordEl.value;
         const confirm_password = confirmPasswordEl.value;
 
         if (!current_password || !new_password || !confirm_password) {
@@ -753,7 +832,7 @@
 
             showPwFeedback('Contraseña actualizada correctamente.', false);
             currentPasswordEl.value = '';
-            newPasswordEl.value     = '';
+            newPasswordEl.value = '';
             confirmPasswordEl.value = '';
         } catch {
             showPwFeedback('Error de red. Inténtalo de nuevo.');
