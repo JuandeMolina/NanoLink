@@ -42,7 +42,6 @@ def login():
             {"username": username, "password": password},
             handle_401=False,
         )
-        print(f"DEBUG LOGIN: Status={status}, r={r}")
 
         if status == 429:
             abort(429)

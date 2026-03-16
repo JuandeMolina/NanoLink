@@ -79,10 +79,10 @@ def create_app(config_class=None):
 
 
 def setup_logging(app):
-    """Setup basic logging configuration."""
     if not app.debug:
-        log_dir = "logs"
-        log_file = os.path.join(log_dir, "app.log")
+        log_dir = Path(__file__).resolve().parent.parent.parent / "logs"
+        log_dir.mkdir(parents=True, exist_ok=True)
+        log_file = log_dir / "client.log"
 
         if not os.path.exists(log_dir):
             os.makedirs(log_dir)

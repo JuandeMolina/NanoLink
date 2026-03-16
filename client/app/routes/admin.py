@@ -15,8 +15,6 @@ from ..utils import admin_required, api_delete, api_get, api_post, API_BASE, _ha
 
 admin = Blueprint("admin", __name__)
 
-API_BASE = "http://localhost:5001/api"
-
 
 @admin.route("/")
 @admin_required

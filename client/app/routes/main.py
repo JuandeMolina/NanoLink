@@ -41,14 +41,14 @@ def api_shorten():
 
     r, status = api_post(f"{API_BASE}/urls/shorten", {"url": url})
 
-    if status == 503:
-        return jsonify({"error": "api_unavailable"}), 503
-    if status == 401:
-        return jsonify({"error": "unauthorized"}), 401
-    if r is None:
+    if status == 429:
+        return jsonify({"error": "too_many_requests"}), 429
+    if status in (503, 401) or r is None:
         return jsonify({"error": "api_unavailable"}), 503
 
-    return jsonify(r.json()), status
+    alias = r.json().get("alias")
+    short_url = request.host_url.rstrip("/") + "/" + alias
+    return jsonify({"shortUrl": short_url, "alias": alias}), 201
 
 
 @main.route("/<short_id>", methods=["GET"])
